@@ -5,3 +5,10 @@
   color: #a20f37 !important;
   opacity: 1;
 }
+.icons {
+  color: #a20f37;
+  font-size: 24px;
+}
+.icons:hover {
+  color: #000000;
+}
