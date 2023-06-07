@@ -5,7 +5,7 @@ import logo from "../../../assets/Logo1.png";
 const Header = () => {
   return (
     <div className="relative">
-      <div className="fixed top-0 z-10 w-full backdrop-blur-sm bg-white/30">
+      <div className="fixed top-0 z-20 w-full backdrop-blur-sm bg-white/30">
         <div className="xl:container mx-auto">
           <div className="navbar">
             <div className="navbar-start">
