@@ -2,34 +2,36 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/Auth";
 import toast, { Toaster } from "react-hot-toast";
+import { updateStatus } from "../../api/addClassesUpdate";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
-  const [disabled, setDisabled] = useState(false);
-  const [classesData] = classes;
-  console.log(classesData._id);
+
   useEffect(() => {
     fetch("http://localhost:5000/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
-  });
+  }, []);
 
-  const handleClasses = () => {
+  const handleClasses = async (classID) => {
+    const selectedClass = classes.find((c) => c._id === classID);
+    console.log(selectedClass.status);
+    if (!selectedClass) return;
     if (!user) {
       toast("please login first");
     } else {
       const addClasses = {
-        classID: classesData._id,
-        name: classesData.name,
-        students: classesData.students,
-        instructor: classesData.instructor,
-        available_seats: classesData.available_seats,
-        price: classesData.price,
-        image: classesData.image,
+        classID: selectedClass._id,
+        name: selectedClass.name,
+        students: selectedClass.students,
+        instructor: selectedClass.instructor,
+        available_seats: selectedClass.available_seats,
+        price: selectedClass.price,
+        image: selectedClass.image,
         email: user.email,
       };
-      fetch("http://localhost:5000/addclasses", {
+      fetch(`http://localhost:5000/addclasses`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -39,7 +41,15 @@ const Classes = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            toast("Class added succesfully");
+            updateStatus(selectedClass._id, true).then((data) => {
+              console.log(data);
+              toast("Class added succesfully");
+            });
+            setClasses((prevClasses) =>
+              prevClasses.map((c) =>
+                c._id === classID ? { ...c, disabled: true } : c
+              )
+            );
           }
           console.log(data);
         });
@@ -72,14 +82,15 @@ const Classes = () => {
                   <span className="text-red-700 font-bold">${c.price}</span>
                 </span>
                 <p>{c.additional_info}</p>
+
                 <div className="card-actions justify-center my-3">
                   <Link>
                     <button
-                      onClick={handleClasses}
-                      disabled={disabled}
+                      onClick={() => handleClasses(c._id)}
+                      disabled={c.disabled}
                       className="btn btn-wide bg-red-700 border-0 text-white"
                     >
-                      Add Classes
+                      Add Class
                     </button>
                   </Link>
                 </div>
