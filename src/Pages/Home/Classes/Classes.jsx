@@ -21,7 +21,9 @@ const Classes = () => {
                 <img className="h-48" src={c.image} alt="" />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">{c.name}</h2>
+                <h2 className="card-title ">
+                  Classes Name: <span className="text-red-700">{c.name}</span>
+                </h2>
                 <span>Students: {c.students}</span>
                 <span>instructor: {c.instructor}</span>
                 <p>{c.additional_info}</p>
