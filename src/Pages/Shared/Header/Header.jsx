@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/Logo1.png";
+import { AuthContext } from "../../../AuthProvider/Auth";
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
+  console.log(user);
+
+  const handleLogOut = () => {
+    logout();
+  };
+
   return (
     <div className="relative">
       <div className="fixed top-0 z-20 w-full backdrop-blur-sm bg-white/30">
@@ -91,7 +100,24 @@ const Header = () => {
               </ul>
             </div>
             <div className="navbar-end">
-              <a className="btn bg-red-500 text-white px-8">Log In</a>
+              {user ? (
+                <div className="w-1/3 grid grid-cols-2">
+                  <img
+                    title={user.displayName}
+                    className="rounded-full ring ring-red-700 w-12 h-14"
+                    src={user.photoURL}
+                  />
+                  <Link>
+                    <button onClick={handleLogOut} className="btn">
+                      Log out
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <Link to="/login" className="btn bg-red-500 text-white px-8">
+                  Log In
+                </Link>
+              )}
             </div>
           </div>
         </div>

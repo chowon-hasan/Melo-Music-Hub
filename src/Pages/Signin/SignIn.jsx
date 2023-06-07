@@ -2,11 +2,12 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/Auth";
 import { useNavigate } from "react-router-dom";
+import "./signup.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [regError, setRegError] = useState("");
-  console.log(regError);
   const { createUser } = useContext(AuthContext);
 
   const {
@@ -29,6 +30,7 @@ const SignIn = () => {
         const createdUser = result;
         console.log(result);
         reset();
+        toast("Sign In succesfull.");
         navigate("/");
       })
       .catch((error) => {
@@ -37,8 +39,11 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <div className="signUp_bg">
       <div className="xl:container mx-auto">
+        <div className="text-center my-5">
+          <h1 className="font-bold text-white">Sign Up Here</h1>
+        </div>
         <div className="lg:w-3/12 mx-auto">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -73,8 +78,14 @@ const SignIn = () => {
 
             <p>{regError}</p>
 
-            <input className="btn" type="submit" />
+            <div className="text-center">
+              <input
+                className="btn btn-wide bg-red-700 border-0 text-white"
+                type="submit"
+              />
+            </div>
           </form>
+          <Toaster />
         </div>
       </div>
     </div>
