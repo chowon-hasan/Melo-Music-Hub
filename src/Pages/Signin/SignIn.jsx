@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../AuthProvider/Auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -85,6 +85,15 @@ const SignIn = () => {
               />
             </div>
           </form>
+          <div className="text-center mt-5 text-black">
+            <p className="text-red-500 my-3">{regError}</p>
+            <p className="text-white">
+              Already have an account?
+              <Link to="/login" className="text-white ms-3">
+                Login here
+              </Link>
+            </p>
+          </div>
           <Toaster />
         </div>
       </div>

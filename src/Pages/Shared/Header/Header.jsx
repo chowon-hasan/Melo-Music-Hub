@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/Logo1.png";
 import { AuthContext } from "../../../AuthProvider/Auth";
+import "./header.css";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -101,14 +102,17 @@ const Header = () => {
             </div>
             <div className="navbar-end">
               {user ? (
-                <div className="w-1/3 grid grid-cols-2">
+                <div className="w-1/3 grid grid-cols-2 justify-center items-center">
                   <img
                     title={user.displayName}
-                    className="rounded-full ring ring-red-700 w-12 h-14"
+                    className="images_profile"
                     src={user.photoURL}
                   />
                   <Link>
-                    <button onClick={handleLogOut} className="btn">
+                    <button
+                      onClick={handleLogOut}
+                      className="btn bg-red-700 text-white border-0"
+                    >
                       Log out
                     </button>
                   </Link>

@@ -1,10 +1,14 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Auth";
-import { GoogleAuthProvider } from "firebase/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./login.css";
 import toast, { Toaster } from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
+import app from "../../Firebase/firebase.config";
+
+const auth = getAuth(app);
 
 const LogIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -20,6 +24,7 @@ const LogIn = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
     signInUser(data.email, data.password)
@@ -32,6 +37,17 @@ const LogIn = () => {
       })
       .catch((err) => {
         setErrorMessage(err.message);
+      });
+  };
+
+  const handlePopup = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const logedUser = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
       });
   };
 
@@ -65,6 +81,25 @@ const LogIn = () => {
               />
             </div>
           </form>
+          <div className="text-center mt-5 text-black">
+            <p className="text-red-500 my-3">{errorMessage}</p>
+            <p>
+              Don't have an account?{" "}
+              <Link to="/signin" className="text-white">
+                Register here
+              </Link>
+            </p>
+          </div>
+          <div className="text-center mt-5 text-white">
+            <p className="mt-3">Or you can sign in with</p>
+            <div className="">
+              <div className="">
+                <button className="btn mt-5 text-white" onClick={handlePopup}>
+                  <FaGoogle />
+                </button>
+              </div>
+            </div>
+          </div>
           <Toaster />
         </div>
       </div>
