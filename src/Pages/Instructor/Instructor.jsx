@@ -24,7 +24,7 @@ const Instructor = () => {
                 <figure>
                   <img className="h-48" src={c.image} alt="" />
                 </figure>
-                <div className="card-body">
+                <div className="card-body text-start">
                   <h2 className="card-title capitalize">
                     Instructor: <span className="text-red-700">{c.name}</span>
                   </h2>

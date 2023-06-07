@@ -29,13 +29,13 @@ const Instructor = () => {
                 </h2>
                 <span>Students: {c.num_students}</span>
                 <span>instructor: {c.classes_taken}</span>
-                <div className="card-actions justify-center my-3">
+                {/* <div className="card-actions justify-center my-3">
                   <Link>
                     <button className="btn btn-wide bg-red-700 border-0 text-white">
                       See Details
                     </button>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

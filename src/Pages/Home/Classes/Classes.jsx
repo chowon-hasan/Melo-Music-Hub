@@ -30,13 +30,13 @@ const Classes = () => {
                 <span>Students: {c.students}</span>
                 <span>instructor: {c.instructor}</span>
                 <p>{c.additional_info}</p>
-                <div className="card-actions justify-center my-3">
+                {/* <div className="card-actions justify-center my-3">
                   <Link>
                     <button className="btn btn-wide bg-red-700 border-0 text-white">
                       See Details
                     </button>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}
