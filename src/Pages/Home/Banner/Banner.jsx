@@ -8,13 +8,28 @@ import img2 from "../../../assets/banner/ban-2.jpg";
 import img3 from "../../../assets/banner/ban-3.jpg";
 import img4 from "../../../assets/banner/ban-4.jpg";
 import img5 from "../../../assets/banner/ban-5.jpg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
     <div className="banner_body">
       <div className="text-center">
-        <div className="absolute z-10 top-50">
-          <h1>hello</h1>
+        <div className="banner_text">
+          <h1 className="text-white font-bold">
+            Welcome at <br /> Melo Music Hub
+          </h1>
+          <p className="text-white">
+            Learn music from world's best musicians with excited classes, notes
+            and lots of resources.
+          </p>
+          <p className="text-white">
+            For purchasing your course please sign up here
+          </p>
+          <Link to="/signup">
+            <button className="btn btn-wide mt-8 bg-red-700 text-white border-0">
+              Sign Up
+            </button>
+          </Link>
         </div>
         <Carousel autoPlay>
           <div className="">
