@@ -25,7 +25,7 @@ const Banner = () => {
           <p className="text-white">
             For purchasing your course please sign up here
           </p>
-          <Link to="/signup">
+          <Link to="/signin">
             <button className="btn btn-wide mt-8 bg-red-700 text-white border-0">
               Sign Up
             </button>

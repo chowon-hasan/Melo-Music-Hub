@@ -16,7 +16,10 @@ const Classes = () => {
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4">
           {classes.map((c) => (
-            <div className="card w-96 bg-white shadow-xl my-5 border py-2">
+            <div
+              key={c._id}
+              className="card w-96 bg-white shadow-xl my-5 border py-2"
+            >
               <figure>
                 <img className="h-48" src={c.image} alt="" />
               </figure>
