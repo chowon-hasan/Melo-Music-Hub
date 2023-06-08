@@ -28,7 +28,7 @@ const Dashboard = () => {
             <NavLink
               to="/dashboard"
               className={({ isActive }) =>
-                isActive ? "text-red-500" : "text-white"
+                isActive ? "text-red-900 " : "text-black"
               }
             >
               <FaHome className="inline me-5" />
@@ -51,6 +51,16 @@ const Dashboard = () => {
             >
               <FaCartArrowDown className="inline me-5" />
               Enrolled Classes
+            </NavLink>
+            <hr />
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-red-500 my-8" : "text-black my-8"
+              }
+            >
+              <FaHome className="inline me-5" />
+              Home
             </NavLink>
           </ul>
         </div>
