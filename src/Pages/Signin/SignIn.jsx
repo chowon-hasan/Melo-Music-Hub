@@ -28,10 +28,26 @@ const SignIn = () => {
     createUser(data.email, data.password, data.name, data.photo)
       .then((result) => {
         const createdUser = result;
-        console.log(result);
-        reset();
-        toast("Sign In succesfull.");
-        navigate("/");
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          image: data.photo,
+        };
+        fetch("http://localhost:5000/students", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              toast("Sign In succesfull.");
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         setRegError(error.message);
@@ -75,8 +91,6 @@ const SignIn = () => {
             {errors.exampleRequired && (
               <span className="block">This field is required</span>
             )}
-
-            <p>{regError}</p>
 
             <div className="text-center">
               <input

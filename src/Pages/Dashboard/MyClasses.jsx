@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Auth";
 import { toast } from "react-hot-toast";
+import Loader from "../Shared/Loader";
 
 const MyClasses = () => {
   const { user, loading } = useContext(AuthContext);
@@ -11,6 +12,9 @@ const MyClasses = () => {
     fetch(`http://localhost:5000/myclasses/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
+        if (loading) {
+          <Loader />;
+        }
         console.log(data);
         setMyClasses(data);
       });

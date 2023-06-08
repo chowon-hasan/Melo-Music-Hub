@@ -1,10 +1,18 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCartArrowDown, FaHome } from "react-icons/fa";
+import {
+  FaCartArrowDown,
+  FaFolderOpen,
+  FaHome,
+  FaMoneyCheckAlt,
+  FaUserCog,
+} from "react-icons/fa";
+import { BiPurchaseTag } from "react-icons/bi";
 import logo from "../../assets/Logo1.png";
-import DashHome from "../Dashboard/DashHome";
 
 const Dashboard = () => {
+  const isAdmin = true;
+
   return (
     <div className="">
       <div className="drawer lg:drawer-open">
@@ -26,33 +34,71 @@ const Dashboard = () => {
             <div className="mx-auto mb-10">
               <img src={logo} alt="" />
             </div>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive ? "text-red-900 " : "text-black"
-              }
-            >
-              <FaHome className="inline me-5" />
-              Student Home
-            </NavLink>
-            <NavLink
-              to="/dashboard/myClasses"
-              className={({ isActive }) =>
-                isActive ? "text-red-500 my-8" : "text-black my-8"
-              }
-            >
-              <FaCartArrowDown className="inline me-5" />
-              Selected Classes
-            </NavLink>
-            <NavLink
-              to="/dashboard/enrolled"
-              className={({ isActive }) =>
-                isActive ? "text-red-500 mb-8" : "text-black mb-8"
-              }
-            >
-              <FaCartArrowDown className="inline me-5" />
-              Enrolled Classes
-            </NavLink>
+
+            {/* CONDIOTIONAL NAVBAR FOR DASHBOARD */}
+            {isAdmin ? (
+              <>
+                <NavLink
+                  to="/dashboard/manageclass"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-900 " : "text-black"
+                  }
+                >
+                  <FaFolderOpen className="inline me-5" />
+                  Manage Classes
+                </NavLink>
+                <NavLink
+                  to="/dashboard/allstudents"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-500 my-8" : "text-black my-8"
+                  }
+                >
+                  <FaUserCog className="inline me-5" />
+                  Manage Users
+                </NavLink>
+              </>
+            ) : (
+              // students navbar
+              <>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-900 " : "text-black"
+                  }
+                >
+                  <FaHome className="inline me-5" />
+                  Student Home
+                </NavLink>
+                <NavLink
+                  to="/dashboard/myClasses"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-500 my-8" : "text-black my-8"
+                  }
+                >
+                  <FaCartArrowDown className="inline me-5" />
+                  Selected Classes
+                </NavLink>
+                <NavLink
+                  to="/dashboard/enrolled"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-500 mb-8" : "text-black mb-8"
+                  }
+                >
+                  <BiPurchaseTag className="inline me-5" />
+                  Enrolled Classes
+                </NavLink>
+                <NavLink
+                  to="/dashboard/payhistory"
+                  className={({ isActive }) =>
+                    isActive ? "text-red-500 mb-8" : "text-black mb-8"
+                  }
+                >
+                  <FaMoneyCheckAlt className="inline me-5" />
+                  Payment history
+                </NavLink>
+              </>
+            )}
+
             <hr />
             <NavLink
               to="/"

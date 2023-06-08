@@ -7,11 +7,12 @@ import "./login.css";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import app from "../../Firebase/firebase.config";
+import Loader from "../Shared/Loader";
 
 const auth = getAuth(app);
 
 const LogIn = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, loading } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
   const [errorMessage, setErrorMessage] = useState();
   const location = useLocation();
@@ -44,6 +45,19 @@ const LogIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const logedUser = result.user;
+        const userInfo = {
+          name: logedUser.displayName,
+          email: logedUser.email,
+        };
+        fetch("http://localhost:5000/students", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then(() => {});
         navigate(from, { replace: true });
       })
       .catch((error) => {
