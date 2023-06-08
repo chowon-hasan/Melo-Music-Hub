@@ -98,6 +98,18 @@ const Header = () => {
                 >
                   Classes
                 </NavLink>
+                {user ? (
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-red-500" : "text-black ms-12"
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                ) : (
+                  ""
+                )}
               </ul>
             </div>
             <div className="navbar-end">

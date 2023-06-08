@@ -5,6 +5,8 @@ import SignIn from "../Pages/Signin/SignIn";
 import LogIn from "../Pages/LogIn/LogIn";
 import Instructor from "../Pages/Instructor/Instructor";
 import Classes from "../Pages/Classes/Classes";
+import Dashboard from "../Pages/HomeLayout/Dashboard";
+import MyClasses from "../Pages/Dashboard/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,16 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LogIn></LogIn>,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard/myClasses",
+        element: <MyClasses></MyClasses>,
+      },
+    ],
   },
 ]);
 

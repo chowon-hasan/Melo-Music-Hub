@@ -7,6 +7,8 @@ import { updateStatus } from "../../api/addClassesUpdate";
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
+  const [status, setStatus] = useState({});
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/classes")
@@ -15,6 +17,7 @@ const Classes = () => {
   }, []);
 
   const handleClasses = async (classID) => {
+    console.log(classID);
     const selectedClass = classes.find((c) => c._id === classID);
     console.log(selectedClass.status);
     if (!selectedClass) return;
@@ -44,17 +47,22 @@ const Classes = () => {
             updateStatus(selectedClass._id, true).then((data) => {
               console.log(data);
               toast("Class added succesfully");
+              fetch(`http://localhost:5000/addclasses/${selectedClass._id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                  // if (data.classID === classID) {
+                  //   setDisabled(true);
+                  // }
+                  setStatus(data);
+                  console.log(data);
+                });
             });
-            setClasses((prevClasses) =>
-              prevClasses.map((c) =>
-                c._id === classID ? { ...c, disabled: true } : c
-              )
-            );
           }
           console.log(data);
         });
     }
   };
+
   return (
     <div className="my-36">
       <div className="xl:container mx-auto">
@@ -87,7 +95,7 @@ const Classes = () => {
                   <Link>
                     <button
                       onClick={() => handleClasses(c._id)}
-                      disabled={c.disabled}
+                      disabled={disabled}
                       className="btn btn-wide bg-red-700 border-0 text-white"
                     >
                       Add Class
