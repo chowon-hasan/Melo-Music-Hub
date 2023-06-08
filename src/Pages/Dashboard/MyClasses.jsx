@@ -5,6 +5,8 @@ import { toast } from "react-hot-toast";
 const MyClasses = () => {
   const { user, loading } = useContext(AuthContext);
   const [myclasses, setMyClasses] = useState([]);
+  //   const total = myclasses.reduce((sum, item) => item.price + sum, 0);
+  //   console.log(total);
   useEffect(() => {
     fetch(`http://localhost:5000/myclasses/${user?.email}`)
       .then((res) => res.json())
@@ -35,16 +37,20 @@ const MyClasses = () => {
 
   return (
     <div>
-      <div className="">
+      <div className="text-center font-bold my-5 text-red-700">
+        <h1>My Selected Class</h1>
+      </div>
+      <div className="border p-5">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
             <thead>
-              <tr>
+              <tr className="text-red-700">
                 <th>Class Name</th>
                 <th>Available Seats</th>
                 <th>Price</th>
                 <th>Delete</th>
+                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -68,13 +74,18 @@ const MyClasses = () => {
                     </div>
                   </td>
                   <td>{c.available_seats}</td>
-                  <td>{c.price}</td>
+                  <td className="text-red-700 font-bold">$ {c.price}</td>
                   <th>
                     <button
                       onClick={() => handledelete(c._id)}
-                      className="btn btn-ghost btn-xs"
+                      className="btn bg-red-900 border-0 text-white btn-xs"
                     >
                       Delete
+                    </button>
+                  </th>
+                  <th>
+                    <button className="btn bg-red-900 border-0 text-white btn-xs">
+                      Payment
                     </button>
                   </th>
                 </tr>

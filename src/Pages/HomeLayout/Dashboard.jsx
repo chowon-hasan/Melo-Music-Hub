@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaHome } from "react-icons/fa";
 import logo from "../../assets/Logo1.png";
+import DashHome from "../Dashboard/DashHome";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
