@@ -32,6 +32,7 @@ const SignIn = () => {
           name: data.name,
           email: data.email,
           image: data.photo,
+          role: "student",
         };
         fetch("http://localhost:5000/students", {
           method: "POST",
