@@ -3,13 +3,19 @@ import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import CheckoutForm from "./CheckoutForm";
 import useSelectClasses from "../../Hookes/useSelectClasses";
+import { useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_STRIPE);
 
 const Payment = () => {
-  const { myclasses, isLoading } = useSelectClasses();
-  const total = myclasses.reduce((sum, item) => item.price + sum, 0);
-  const price = parseFloat(total.toFixed(2));
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const priceNew = queryParams.get("price");
+  const classId = queryParams.get("id");
+  const totalPrice = parseInt(priceNew);
+  const price = parseFloat(totalPrice.toFixed(2));
+
+  console.log(typeof price, price, classId);
 
   return (
     <div>
@@ -19,7 +25,7 @@ const Payment = () => {
       </div>
       <div className="border p-5">
         <Elements stripe={stripePromise}>
-          <CheckoutForm price={price}></CheckoutForm>
+          <CheckoutForm price={price} classId={classId}></CheckoutForm>
         </Elements>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthProvider/Auth";
 import { loadStripe } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ price, classId }) => {
   const [cardError, setCarderror] = useState("");
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
@@ -79,6 +79,7 @@ const CheckoutForm = ({ price }) => {
         currency: paymentIntent.currency,
         payment_method: paymentIntent.payment_method_types[0],
         status: paymentIntent.status,
+        classId: classId,
       };
       fetch("http://localhost:5000/myenrolled", {
         method: "POST",

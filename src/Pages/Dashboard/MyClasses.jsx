@@ -42,6 +42,14 @@ const MyClasses = () => {
     }
   };
 
+  const handlePayment = (id) => {
+    const selectedClass = myclasses.find((c) => c._id === id);
+    if (selectedClass) {
+      const paymentUrl = `/dashboard/payment?price=${selectedClass.price}&id=${selectedClass._id}`;
+      window.location.href = paymentUrl;
+    }
+  };
+
   return (
     <div>
       <div className="text-center font-bold my-5 text-red-700">
@@ -57,6 +65,7 @@ const MyClasses = () => {
                 <th>Available Seats</th>
                 <th>Price</th>
                 <th>Delete</th>
+                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -87,6 +96,14 @@ const MyClasses = () => {
                       className="btn bg-red-900 border-0 text-white btn-xs"
                     >
                       Delete
+                    </button>
+                  </th>
+                  <th>
+                    <button
+                      onClick={() => handlePayment(c._id)}
+                      className="btn bg-red-900 border-0 text-white btn-xs"
+                    >
+                      Payment
                     </button>
                   </th>
                 </tr>
