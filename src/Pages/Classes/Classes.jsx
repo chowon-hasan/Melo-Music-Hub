@@ -3,17 +3,22 @@ import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/Auth";
 import toast, { Toaster } from "react-hot-toast";
 import { updateStatus } from "../../api/addClassesUpdate";
+import Loader from "../Shared/Loader";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
   const [status, setStatus] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/classes")
       .then((res) => res.json())
-      .then((data) => setClasses(data));
+      .then((data) => {
+        setClasses(data);
+        setLoading(false);
+      });
   }, []);
 
   const handleClasses = async (classID) => {
@@ -69,6 +74,7 @@ const Classes = () => {
         <div className="text-center my-8 text-red-700">
           <h1 className="font-bold text-6xl">Top Classses</h1>
         </div>
+        {loading && <Loader />}
         <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4">
           {classes.map((c) => (
             <div

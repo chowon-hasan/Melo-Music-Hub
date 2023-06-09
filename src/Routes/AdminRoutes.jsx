@@ -4,8 +4,9 @@ import { Navigate, useLocation } from "react-router-dom";
 import Loader from "../Pages/Shared/Loader";
 
 const AdminRoutes = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [isAdmin, setAdmin] = useState();
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -14,6 +15,7 @@ const AdminRoutes = ({ children }) => {
       .then((info) => {
         console.log(info);
         setAdmin(info.admin);
+        setLoading(false);
       });
   }, []);
 

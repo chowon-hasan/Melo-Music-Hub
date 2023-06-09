@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../Shared/Loader";
 
 const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("http://localhost:5000/instructor")
       .then((res) => res.json())
-      .then((data) => setInstructor(data));
+      .then((data) => {
+        setInstructor(data);
+        setLoading(false);
+      });
   });
   return (
     <section className="mt-36 border">
@@ -15,6 +20,7 @@ const Instructor = () => {
           <h1 className="font-bold text-6xl text-red-700 my-5">
             Our Instructor's
           </h1>
+          {loading && <Loader />}
           <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4 my-5">
             {instructor.map((c) => (
               <div

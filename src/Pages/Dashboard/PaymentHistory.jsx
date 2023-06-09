@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../AuthProvider/Auth";
 
 const PaymentHistory = () => {
+  const { user } = useContext(AuthContext);
   const [payHistory, setPayHistory] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/payment/history")
+    fetch(`http://localhost:5000/payment/history/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setPayHistory(data);
@@ -14,6 +16,13 @@ const PaymentHistory = () => {
       <div className="text-center mb-5">
         <h1 className="font-bold text-red-700">Payment Historty</h1>
       </div>
+      {payHistory.length == 0 && (
+        <>
+          <div className="text-center py-5">
+            <p className="font-bold"> You haven't purchase any course</p>
+          </div>
+        </>
+      )}
       <div className="">
         <div className="overflow-x-auto">
           <table className="table">
