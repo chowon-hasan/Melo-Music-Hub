@@ -13,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import Payment from "../Pages/Dashboard/Payment";
 import ManageClass from "../Pages/Dashboard/Admin Dashboard/ManageClass";
 import ManageUsers from "../Pages/Dashboard/Admin Dashboard/ManageUsers";
+import AdminRoutes from "./AdminRoutes";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -63,15 +65,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payhistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "/dashboard/payment",
         element: <Payment></Payment>,
       },
       {
         path: "/dashboard/manageclass",
-        element: <ManageClass></ManageClass>,
+        element: (
+          <AdminRoutes>
+            <ManageClass></ManageClass>
+          </AdminRoutes>
+        ),
       },
       {
         path: "/dashboard/allstudents",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoutes>
+            <ManageUsers></ManageUsers>
+          </AdminRoutes>
+        ),
       },
     ],
   },

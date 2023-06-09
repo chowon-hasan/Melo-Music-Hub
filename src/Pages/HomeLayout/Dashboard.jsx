@@ -16,7 +16,6 @@ const Dashboard = () => {
   const [isAdmin, setAdmin] = useState(false);
   const [isInstructor, setInstructor] = useState(false);
   const [student, setStudent] = useState(false);
-  console.log(isInstructor);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {

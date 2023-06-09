@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Auth";
 import { toast } from "react-hot-toast";
 import Loader from "../Shared/Loader";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const { user, loading } = useContext(AuthContext);
@@ -88,9 +89,11 @@ const MyClasses = () => {
                     </button>
                   </th>
                   <th>
-                    <button className="btn bg-red-900 border-0 text-white btn-xs">
-                      Payment
-                    </button>
+                    <Link to="/dashboard/payment">
+                      <button className="btn bg-red-900 border-0 text-white btn-xs">
+                        Payment
+                      </button>
+                    </Link>
                   </th>
                 </tr>
               ))}
