@@ -55,6 +55,15 @@ const MyClasses = () => {
       <div className="text-center font-bold my-5 text-red-700">
         <h1>My Selected Class</h1>
       </div>
+      {myclasses.length == 0 && (
+        <>
+          <div className="text-center">
+            <h3 className="py-5 font-bold ">
+              You haven't Added any Classes for Enroll
+            </h3>
+          </div>
+        </>
+      )}
       <div className="border p-5">
         <div className="overflow-x-auto">
           <table className="table">
@@ -69,7 +78,6 @@ const MyClasses = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
               {myclasses.map((c) => (
                 <tr key={c._id}>
                   <td>

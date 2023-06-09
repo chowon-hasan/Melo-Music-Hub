@@ -48,6 +48,7 @@ const LogIn = () => {
         const userInfo = {
           name: logedUser.displayName,
           email: logedUser.email,
+          role: "student",
         };
         fetch("http://localhost:5000/students", {
           method: "POST",
