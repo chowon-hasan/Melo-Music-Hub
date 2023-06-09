@@ -45,7 +45,7 @@ const MyClasses = () => {
   const handlePayment = (id) => {
     const selectedClass = myclasses.find((c) => c._id === id);
     if (selectedClass) {
-      const paymentUrl = `/dashboard/payment?price=${selectedClass.price}&id=${selectedClass._id}`;
+      const paymentUrl = `/dashboard/payment?price=${selectedClass.price}&id=${selectedClass.classID}`;
       window.location.href = paymentUrl;
     }
   };
@@ -117,11 +117,11 @@ const MyClasses = () => {
         <p>
           Total price $ <span className="font-bold text-red-700">{total}</span>
         </p>
-        <Link to="/dashboard/payment">
+        {/* <Link to="/dashboard/payment">
           <button className="btn bg-red-900 border-0 text-white btn-wide mt-5">
             Payment
           </button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

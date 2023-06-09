@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/Auth";
 import { loadStripe } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
+import Loader from "../Shared/Loader";
+import { Toaster, toast } from "react-hot-toast";
 
 const CheckoutForm = ({ price, classId }) => {
   const [cardError, setCarderror] = useState("");
@@ -80,6 +82,7 @@ const CheckoutForm = ({ price, classId }) => {
         payment_method: paymentIntent.payment_method_types[0],
         status: paymentIntent.status,
         classId: classId,
+        user: user.email,
       };
       fetch("http://localhost:5000/myenrolled", {
         method: "POST",
@@ -90,8 +93,17 @@ const CheckoutForm = ({ price, classId }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("enrolled data respnse", data);
-          navigate("/dashboard/enrolled");
+          fetch(`http://localhost:5000/deletedClass/${classId}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deletedCount > 0) {
+                toast("payment succesfull");
+                navigate("/dashboard/enrolled");
+              }
+            });
         });
     }
   };
@@ -134,6 +146,7 @@ const CheckoutForm = ({ price, classId }) => {
           </p>
         )}
       </div>
+      <Toaster />
     </div>
   );
 };

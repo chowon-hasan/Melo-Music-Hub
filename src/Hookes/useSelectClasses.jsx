@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthProvider/Auth";
 
-const useSelectClasses = () => {
+const useSelectClasses = (id) => {
   const { user, loading } = useContext(AuthContext);
   const [myclasses, setMyClasses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
