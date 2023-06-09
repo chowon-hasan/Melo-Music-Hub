@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 const MyClasses = () => {
   const { user, loading } = useContext(AuthContext);
   const [myclasses, setMyClasses] = useState([]);
-  //   const total = myclasses.reduce((sum, item) => item.price + sum, 0);
-  //   console.log(total);
+
   useEffect(() => {
     fetch(`http://localhost:5000/myclasses/${user?.email}`)
       .then((res) => res.json())
@@ -20,6 +19,9 @@ const MyClasses = () => {
         setMyClasses(data);
       });
   }, [user, loading]);
+
+  const total = myclasses.reduce((sum, item) => item.price + sum, 0);
+  console.log(total);
 
   const handledelete = (id) => {
     console.log(id);
@@ -55,7 +57,6 @@ const MyClasses = () => {
                 <th>Available Seats</th>
                 <th>Price</th>
                 <th>Delete</th>
-                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -88,19 +89,22 @@ const MyClasses = () => {
                       Delete
                     </button>
                   </th>
-                  <th>
-                    <Link to="/dashboard/payment">
-                      <button className="btn bg-red-900 border-0 text-white btn-xs">
-                        Payment
-                      </button>
-                    </Link>
-                  </th>
                 </tr>
               ))}
             </tbody>
             {/* foot */}
           </table>
         </div>
+      </div>
+      <div className=" mt-5 text-center">
+        <p>
+          Total price $ <span className="font-bold text-red-700">{total}</span>
+        </p>
+        <Link to="/dashboard/payment">
+          <button className="btn bg-red-900 border-0 text-white btn-wide mt-5">
+            Payment
+          </button>
+        </Link>
       </div>
     </div>
   );
