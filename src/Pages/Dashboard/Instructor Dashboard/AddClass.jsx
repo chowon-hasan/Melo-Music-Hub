@@ -129,7 +129,7 @@ const AddClass = () => {
           <input
             type="text"
             defaultValue="pending"
-            className="w-full bg-white border rounded p-3 block mb-5 hidden"
+            className="hidden"
             {...register("status", { required: true })}
           />
 

@@ -96,7 +96,7 @@ const Dashboard = () => {
                   Add A Class
                 </NavLink>
                 <NavLink
-                  to="/dashboard/enrolled"
+                  to="/dashboard/instrucotr/addclass"
                   className={({ isActive }) =>
                     isActive ? "text-red-500 mb-8" : "text-black mb-8"
                   }
