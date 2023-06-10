@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Shared/Loader";
 
 const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("http://localhost:5000/instructor")
       .then((res) => res.json())
@@ -12,7 +13,8 @@ const Instructor = () => {
         setInstructor(data);
         setLoading(false);
       });
-  });
+  }, []);
+
   return (
     <section className="mt-36 border">
       <div className="xl:container mx-auto">

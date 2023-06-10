@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
-  });
+  }, []);
+
   return (
     <div>
       <div className="xl:container mx-auto">

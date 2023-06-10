@@ -11,6 +11,8 @@ const Classes = () => {
   const [status, setStatus] = useState({});
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setAdmin] = useState(false);
+  const [isInstructor, setInstructor] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/classes")
@@ -20,6 +22,15 @@ const Classes = () => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/allstudents/admin/${user.email}`)
+      .then((res) => res.json())
+      .then((info) => {
+        setAdmin(info.admin);
+        setInstructor(info.instructor);
+      });
+  }, [user]);
 
   const handleClasses = async (classID) => {
     console.log(classID);
@@ -101,7 +112,7 @@ const Classes = () => {
                   <Link>
                     <button
                       onClick={() => handleClasses(c._id)}
-                      disabled={disabled}
+                      disabled={isAdmin || isInstructor}
                       className="btn btn-wide bg-red-700 border-0 text-white"
                     >
                       Add Class

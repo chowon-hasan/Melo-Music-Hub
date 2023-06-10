@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import user from "../../../assets/banner/user.jpg";
 import { Toaster, toast } from "react-hot-toast";
+import Loader from "../../Shared/Loader";
 
 const ManageUsers = () => {
   const [allStudents, setAllStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/allstudents")
@@ -11,6 +13,7 @@ const ManageUsers = () => {
       .then((data) => {
         console.log(data);
         setAllStudents(data);
+        setLoading(false);
       });
   }, []);
 
@@ -49,6 +52,7 @@ const ManageUsers = () => {
       <div className="text-center">
         <h1 className="font-bold text-red-700 my-5">All Users List</h1>
       </div>
+      {loading && <Loader />}
       <div className="border p-5">
         <div className="overflow-x-auto">
           <table className="table">

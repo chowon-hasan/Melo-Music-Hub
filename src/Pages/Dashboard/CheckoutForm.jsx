@@ -101,7 +101,9 @@ const CheckoutForm = ({ price, classId }) => {
               console.log(data);
               if (data.deletedCount > 0) {
                 toast("payment succesfull");
-                navigate("/dashboard/enrolled");
+                const paymentUrl = `/dashboard/enrolled?id=${classId}`;
+                window.location.href = paymentUrl;
+                // navigate("/dashboard/enrolled");
               }
             });
         });
