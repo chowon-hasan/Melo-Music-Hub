@@ -87,7 +87,7 @@ const Dashboard = () => {
                   Instructor Home
                 </NavLink>
                 <NavLink
-                  to="/dashboard/myClasses"
+                  to="/dashboard/addclass"
                   className={({ isActive }) =>
                     isActive ? "text-red-500 my-8" : "text-black my-8"
                   }
