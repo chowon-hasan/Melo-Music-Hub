@@ -96,7 +96,7 @@ const ManageUsers = () => {
                   <th>
                     <button
                       onClick={() => makeInstructor(c._id)}
-                      disabled={c.role === "instructor"}
+                      disabled={c.role === "instructor" || c.role === "admin"}
                       className="btn bg-red-900 border-0 text-white btn-xs"
                     >
                       Make Instructor
@@ -104,7 +104,7 @@ const ManageUsers = () => {
                   </th>
                   <th>
                     <button
-                      disabled={c.role === "admin"}
+                      disabled={c.role === "admin" || c.role === "instructor"}
                       onClick={() => makeAdmin(c._id)}
                       className="btn bg-red-900 border-0 text-white btn-xs"
                     >

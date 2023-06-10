@@ -58,6 +58,7 @@ const ManageClass = () => {
               <th>Status</th>
               <th>Approved</th>
               <th>Denied</th>
+              <th>FeedBack</th>
             </tr>
           </thead>
           <tbody>
@@ -89,7 +90,7 @@ const ManageClass = () => {
                 <th>
                   <button
                     onClick={() => handleApproved(c._id)}
-                    disabled={c.status === "approved"}
+                    disabled={c.status === "approved" || c.status === "denied"}
                     className="btn bg-red-900 border-0 text-white btn-xs"
                   >
                     Approved
@@ -98,10 +99,15 @@ const ManageClass = () => {
                 <th>
                   <button
                     onClick={() => handleDenied(c._id)}
-                    disabled={c.status === "denied"}
+                    disabled={c.status === "denied" || c.status === "approved"}
                     className="btn bg-red-900 border-0 text-white btn-xs"
                   >
                     Denied
+                  </button>
+                </th>
+                <th>
+                  <button className="btn bg-green-300 border-0 text-white btn-xs">
+                    Send FeedBack
                   </button>
                 </th>
               </tr>
