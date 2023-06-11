@@ -63,7 +63,7 @@ const PaymentHistory = () => {
                     </span>
                   </td>
                   <td>
-                    <button className="btn btn-xs bg-green-100 border-0 text-black">
+                    <button className="btn btn-xs bg-green-100 border-0 text-black hover:bg-green-100">
                       {payment.status}
                     </button>
                   </td>

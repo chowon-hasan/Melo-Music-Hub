@@ -1,34 +1,85 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/Auth";
+import Loader from "../Shared/Loader";
 
 const Enrolled = () => {
   const { user } = useContext(AuthContext);
-  const [enrolledClass, setEnrolledClass] = useState({});
-  const [example, setExample] = useState([]);
-
-  console.log(example);
+  const [enrolledClass, setEnrolledClass] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`http://localhost:5000/payment/history/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setExample(data);
-        console.log("payment histroy ", data[0].classId);
+        console.log(data);
+        // fetch(
+        //   `http://localhost:5000/student/enrolledClasses/${data[0].classId}?userEmail=${user.email}`
+        // )
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     setEnrolledClass(data);
+        //     setLoading(false);
+        //   });
         fetch(
-          `http://localhost:5000/student/enrolledClasses/${data[0].classId}?userEmail=${user.email}`
+          `http://localhost:5000/student/enrolledClasses?userEmail=${user.email}`
         )
           .then((res) => res.json())
           .then((data) => {
             setEnrolledClass(data);
+            setLoading(false);
           });
       });
   }, [user]);
 
   return (
     <div>
-      <h1>enrolled page</h1>
-      <h1>{enrolledClass.name}</h1>
+      <div className="text-center mb-5">
+        <h1 className="font-bold text-red-700">My Enrolled Courses</h1>
+      </div>
+      {loading && <Loader />}
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="text-red-700">
+              <th>Class Name</th>
+              <th>Instructor</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {enrolledClass.map((c) => (
+              <tr key={c._id}>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={c.image}
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{c.name}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{c.instructor}</td>
+                <td className="text-red-700 font-bold">$ {c.price}</td>
+                <th>
+                  <button className="btn bg-green-100 border-0 text-black btn-xs">
+                    {c.paymentHistory.status}
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+          {/* foot */}
+        </table>
+      </div>
     </div>
   );
 };
