@@ -31,7 +31,7 @@ const Banner = () => {
             <div className="text-white mt-8">
               <p>You are signed in !!!</p>
               <p>purchase your course now</p>
-              <Link>
+              <Link to="/classes">
                 <button className="btn btn-wide mt-5 bg-white text-black hover:text-white">
                   See classes
                 </button>

@@ -8,8 +8,8 @@ import Loader from "../Shared/Loader";
 const Classes = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
-  const [status, setStatus] = useState({});
-  const [disabled, setDisabled] = useState(false);
+  // const [status, setStatus] = useState({});
+  // const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setAdmin] = useState(false);
   const [isInstructor, setInstructor] = useState(false);
@@ -24,7 +24,7 @@ const Classes = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allstudents/admin/${user.email}`)
+    fetch(`http://localhost:5000/allstudents/admin/${user?.email}`)
       .then((res) => res.json())
       .then((info) => {
         setAdmin(info.admin);
@@ -32,10 +32,18 @@ const Classes = () => {
       });
   }, [user]);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/approved/class")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setApprovedClass(data);
+  //     });
+  // }, []);
+
+  // const combinedDtata = [...classes, ...approvedClass];
+
   const handleClasses = async (classID) => {
-    console.log(classID);
-    const selectedClass = classes.find((c) => c._id === classID);
-    console.log(selectedClass.status);
+    const selectedClass = combinedDtata.find((c) => c._id === classID);
     if (!selectedClass) return;
     if (!user) {
       toast("please login first");
@@ -60,21 +68,15 @@ const Classes = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            updateStatus(selectedClass._id, true).then((data) => {
-              console.log(data);
+            updateStatus(selectedClass._id, true).then(() => {
               toast("Class added succesfully");
-              fetch(`http://localhost:5000/addclasses/${selectedClass._id}`)
+              fetch(`http://localhost:5000/myclasses/status/${classID}`)
                 .then((res) => res.json())
                 .then((data) => {
-                  // if (data.classID === classID) {
-                  //   setDisabled(true);
-                  // }
-                  setStatus(data);
-                  console.log(data);
+                  setStatus(data.status);
                 });
             });
           }
-          console.log(data);
         });
     }
   };
@@ -83,13 +85,13 @@ const Classes = () => {
     <div className="my-36">
       <div className="xl:container mx-auto">
         <div className="text-center my-8 text-red-700">
-          <h1 className="font-bold text-6xl">Top Classses</h1>
+          <h1 className="font-bold text-6xl">All Classes</h1>
         </div>
         {loading && <Loader />}
         <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4">
-          {classes.map((c) => (
+          {classes.map((c, i) => (
             <div
-              key={c._id}
+              key={i}
               className="card w-96 bg-white shadow-xl my-5 border py-2"
             >
               <figure>

@@ -27,6 +27,7 @@ const Enrolled = () => {
           .then((res) => res.json())
           .then((data) => {
             setEnrolledClass(data);
+            console.log(data);
             setLoading(false);
           });
       });
@@ -50,8 +51,8 @@ const Enrolled = () => {
             </tr>
           </thead>
           <tbody>
-            {enrolledClass.map((c) => (
-              <tr key={c._id}>
+            {enrolledClass.map((c, i) => (
+              <tr key={i}>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -70,7 +71,7 @@ const Enrolled = () => {
                 <td>{c.instructor}</td>
                 <td className="text-red-700 font-bold">$ {c.price}</td>
                 <th>
-                  <button className="btn bg-green-100 border-0 text-black btn-xs">
+                  <button className="btn bg-green-100 border-0 text-black btn-xs hover:bg-green-100">
                     {c.paymentHistory.status}
                   </button>
                 </th>

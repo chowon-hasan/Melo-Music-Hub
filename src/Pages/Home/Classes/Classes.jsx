@@ -6,7 +6,7 @@ const Classes = () => {
   useEffect(() => {
     fetch("http://localhost:5000/classes")
       .then((res) => res.json())
-      .then((data) => setClasses(data));
+      .then((data) => setClasses(data.slice(0, 6)));
   }, []);
 
   return (

@@ -15,16 +15,13 @@ const MyClasses = () => {
         if (loading) {
           <Loader />;
         }
-        console.log(data);
         setMyClasses(data);
       });
   }, [user, loading]);
 
   const total = myclasses.reduce((sum, item) => item.price + sum, 0);
-  console.log(total);
 
   const handledelete = (id) => {
-    console.log(id);
     const procced = confirm("are you sure to delete this?");
     if (procced) {
       fetch(`http://localhost:5000/myclasses/${id}`, {
@@ -32,7 +29,6 @@ const MyClasses = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
           if (result.deletedCount > 0) {
             toast("deleted");
             const remaining = myclasses.filter((c) => c._id !== id);

@@ -35,8 +35,19 @@ const ManageClass = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          toast("operation succesfull");
-          window.location.reload();
+          fetch("http://localhost:5000/instructorClass/allClasses", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(instructorClasses),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              toast("operation succesfull");
+              window.location.reload();
+              console.log(data);
+            });
         }
       });
   };

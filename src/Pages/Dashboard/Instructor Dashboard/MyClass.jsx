@@ -65,10 +65,12 @@ const MyClass = () => {
                     {classes.available_seats}
                   </span>
                 </td>
-                <td>
-                  <button className="btn btn-xs bg-green-100 border-0 text-black hover:bg-green-100">
-                    {classes.status}
-                  </button>
+                <td className="text-center">
+                  <div className="bg-green-100  p-2">
+                    <p className="text-black font-bold capitalize">
+                      {classes.status}
+                    </p>
+                  </div>
                 </td>
               </tr>
             ))}
