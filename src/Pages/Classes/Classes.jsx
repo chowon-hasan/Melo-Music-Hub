@@ -43,7 +43,7 @@ const Classes = () => {
   // const combinedDtata = [...classes, ...approvedClass];
 
   const handleClasses = async (classID) => {
-    const selectedClass = combinedDtata.find((c) => c._id === classID);
+    const selectedClass = classes.find((c) => c._id === classID);
     if (!selectedClass) return;
     if (!user) {
       toast("please login first");
@@ -73,7 +73,7 @@ const Classes = () => {
               fetch(`http://localhost:5000/myclasses/status/${classID}`)
                 .then((res) => res.json())
                 .then((data) => {
-                  setStatus(data.status);
+                  console.log(data.status);
                 });
             });
           }

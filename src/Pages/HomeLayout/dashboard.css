@@ -1,0 +1,8 @@
+.dash_bg_enter {
+  background-image: linear-gradient(#ffffff9d, #ffffff9a),
+    url(../../assets/banner/music-instruments-2887457_1920.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}

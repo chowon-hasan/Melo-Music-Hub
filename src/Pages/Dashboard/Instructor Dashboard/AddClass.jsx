@@ -46,6 +46,7 @@ const AddClass = () => {
             status,
             image: imgURL,
             additional_info,
+            students: 0,
           };
           console.log(addClassData);
           fetch("http://localhost:5000/addClass/instructor", {

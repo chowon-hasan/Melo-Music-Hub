@@ -2,7 +2,7 @@ import React from "react";
 
 const DashHome = () => {
   return (
-    <div>
+    <div className="">
       <div className="hero min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">
