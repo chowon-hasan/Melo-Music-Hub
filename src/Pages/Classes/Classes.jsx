@@ -15,7 +15,7 @@ const Classes = () => {
   const [isInstructor, setInstructor] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch(`https://melo-music-hub-server-chowon-hasan.vercel.app/classes`)
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -24,7 +24,9 @@ const Classes = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allstudents/admin/${user?.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/allstudents/admin/${user?.email}`
+    )
       .then((res) => res.json())
       .then((info) => {
         setAdmin(info.admin);
@@ -58,19 +60,24 @@ const Classes = () => {
         image: selectedClass.image,
         email: user.email,
       };
-      fetch(`http://localhost:5000/addclasses`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(addClasses),
-      })
+      fetch(
+        `https://melo-music-hub-server-chowon-hasan.vercel.app/addclasses`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(addClasses),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
             updateStatus(selectedClass._id, true).then(() => {
               toast("Class added succesfully");
-              fetch(`http://localhost:5000/myclasses/status/${classID}`)
+              fetch(
+                `https://melo-music-hub-server-chowon-hasan.vercel.app/myclasses/status/${classID}`
+              )
                 .then((res) => res.json())
                 .then((data) => {
                   console.log(data.status);

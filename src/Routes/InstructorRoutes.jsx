@@ -9,7 +9,9 @@ const InstructorRoutes = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allstudents/admin/${user.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/allstudents/admin/${user.email}`
+    )
       .then((res) => res.json())
       .then((info) => {
         console.log(info);

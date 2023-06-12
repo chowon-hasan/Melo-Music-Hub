@@ -6,7 +6,9 @@ const ManageClass = () => {
   const [instructorClasses, setInstructorClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/addedclasses/instructor")
+    fetch(
+      "https://melo-music-hub-server-chowon-hasan.vercel.app/addedclasses/instructor"
+    )
       .then((res) => res.json())
       .then((data) => {
         setInstructorClasses(data);
@@ -15,9 +17,12 @@ const ManageClass = () => {
   }, []);
 
   const handleApproved = (id) => {
-    fetch(`http://localhost:5000/status/approved/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/status/approved/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
@@ -28,20 +33,26 @@ const ManageClass = () => {
   };
 
   const handleDenied = (id) => {
-    fetch(`http://localhost:5000/status/denied/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/status/denied/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          fetch("http://localhost:5000/instructorClass/allClasses", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(instructorClasses),
-          })
+          fetch(
+            "https://melo-music-hub-server-chowon-hasan.vercel.app/instructorClass/allClasses",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(instructorClasses),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               toast("operation succesfull");

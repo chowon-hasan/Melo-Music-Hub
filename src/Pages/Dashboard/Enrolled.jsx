@@ -9,12 +9,14 @@ const Enrolled = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/payment/history/${user.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/payment/history/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         // fetch(
-        //   `http://localhost:5000/student/enrolledClasses/${data[0].classId}?userEmail=${user.email}`
+        //   `https://melo-music-hub-server-chowon-hasan.vercel.app/student/enrolledClasses/${data[0].classId}?userEmail=${user.email}`
         // )
         //   .then((res) => res.json())
         //   .then((data) => {
@@ -22,7 +24,7 @@ const Enrolled = () => {
         //     setLoading(false);
         //   });
         fetch(
-          `http://localhost:5000/student/enrolledClasses?userEmail=${user.email}`
+          `https://melo-music-hub-server-chowon-hasan.vercel.app/student/enrolledClasses?userEmail=${user.email}`
         )
           .then((res) => res.json())
           .then((data) => {

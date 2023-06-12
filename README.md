@@ -31,3 +31,5 @@ This web application has some intersting features. Here We Go
 - for storing data this application used mongoDB and for hosting images used ImgBB .
 
 ## LIVE LINK
+
+https://melo-music-hub-326ac.web.app/

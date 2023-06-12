@@ -9,7 +9,9 @@ const MyClasses = () => {
   const [myclasses, setMyClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myclasses/${user?.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/myclasses/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (loading) {
@@ -24,9 +26,12 @@ const MyClasses = () => {
   const handledelete = (id) => {
     const procced = confirm("are you sure to delete this?");
     if (procced) {
-      fetch(`http://localhost:5000/myclasses/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://melo-music-hub-server-chowon-hasan.vercel.app/myclasses/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((result) => {
           if (result.deletedCount > 0) {

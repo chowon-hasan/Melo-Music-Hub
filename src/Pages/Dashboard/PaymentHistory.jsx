@@ -5,7 +5,9 @@ const PaymentHistory = () => {
   const { user } = useContext(AuthContext);
   const [payHistory, setPayHistory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/payment/history/${user.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/payment/history/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setPayHistory(data);

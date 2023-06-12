@@ -50,13 +50,16 @@ const LogIn = () => {
           email: logedUser.email,
           role: "student",
         };
-        fetch("http://localhost:5000/students", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userInfo),
-        })
+        fetch(
+          "https://melo-music-hub-server-chowon-hasan.vercel.app/students",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          }
+        )
           .then((res) => res.json())
           .then(() => {});
         navigate(from, { replace: true });

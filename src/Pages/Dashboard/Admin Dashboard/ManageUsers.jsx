@@ -8,7 +8,7 @@ const ManageUsers = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allstudents")
+    fetch("https://melo-music-hub-server-chowon-hasan.vercel.app/allstudents")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -19,9 +19,12 @@ const ManageUsers = () => {
 
   const makeAdmin = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/allstudents/admin/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/allstudents/admin/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -34,9 +37,12 @@ const ManageUsers = () => {
 
   const makeInstructor = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/allstudents/instructor/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/allstudents/instructor/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

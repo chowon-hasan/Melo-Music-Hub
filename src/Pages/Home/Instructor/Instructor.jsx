@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/instructor")
+    fetch("https://melo-music-hub-server-chowon-hasan.vercel.app/instructor")
       .then((res) => res.json())
       .then((data) => setInstructor(data));
   });

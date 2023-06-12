@@ -19,11 +19,14 @@ const CheckoutForm = ({ price, classId }) => {
   const stripePromise = loadStripe(toString(import.meta.env.VITE_PAYMENT_KEY));
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://melo-music-hub-server-chowon-hasan.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setClientSecret(data.clientSecret);
@@ -84,33 +87,42 @@ const CheckoutForm = ({ price, classId }) => {
         classId: classId,
         user: user.email,
       };
-      fetch("http://localhost:5000/myenrolled", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(enrollmentDetails),
-      })
+      fetch(
+        "https://melo-music-hub-server-chowon-hasan.vercel.app/myenrolled",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(enrollmentDetails),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
-          fetch(`http://localhost:5000/deletedClass/${classId}`, {
-            method: "DELETE",
-          })
+          fetch(
+            `https://melo-music-hub-server-chowon-hasan.vercel.app/deletedClass/${classId}`,
+            {
+              method: "DELETE",
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
               if (data.deletedCount > 0) {
                 toast("payment succesfull");
-                fetch(`http://localhost:5000/update/seats/${classId}`, {
-                  method: "PATCH",
-                })
+                fetch(
+                  `https://melo-music-hub-server-chowon-hasan.vercel.app/update/seats/${classId}`,
+                  {
+                    method: "PATCH",
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     console.log(data);
                   });
                 const paymentUrl = `/dashboard/enrolled?id=${classId}`;
                 window.location.href = paymentUrl;
-                // navigate("/dashboard/enrolled");
+                navigate("/dashboard/enrolled");
               }
             });
         });

@@ -1,0 +1,11 @@
+.error_bg {
+  background-image: linear-gradient(#0000006a, #00000053),
+    url(../assets/banner/mistake-3085712_1920.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

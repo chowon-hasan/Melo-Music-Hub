@@ -49,13 +49,16 @@ const AddClass = () => {
             students: 0,
           };
           console.log(addClassData);
-          fetch("http://localhost:5000/addClass/instructor", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(addClassData),
-          })
+          fetch(
+            "https://melo-music-hub-server-chowon-hasan.vercel.app/addClass/instructor",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(addClassData),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

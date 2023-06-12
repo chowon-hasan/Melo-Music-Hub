@@ -17,11 +17,13 @@ import AdminRoutes from "./AdminRoutes";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import AddClass from "../Pages/Dashboard/Instructor Dashboard/AddClass";
 import MyClass from "../Pages/Dashboard/Instructor Dashboard/MyClass";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

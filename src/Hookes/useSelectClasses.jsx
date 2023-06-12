@@ -8,7 +8,9 @@ const useSelectClasses = (id) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/myclasses/${user?.email}`)
+    fetch(
+      `https://melo-music-hub-server-chowon-hasan.vercel.app/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyClasses(data);
