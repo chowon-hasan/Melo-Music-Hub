@@ -38,11 +38,15 @@ const Footer = () => {
           </div>
         </footer>
         <footer className="footer px-10 py-4 border-t text-base-content border-base-300">
-          <div className="items-center grid-flow-col">
+          <div className="items-end grid-flow-col">
             <img src={logo} alt="" />
             <p className="text-black font-semibold">
               Melo Music Hub <br />
-              Providing best Music Lesson from World's Best Musician
+              Providing best Music Lesson from World's Best Musician <br />
+              <span className="text-red-700">
+                {" "}
+                All rights reserved chowon hasan
+              </span>
             </p>
           </div>
           <div className="md:place-self-center md:justify-self-end">

@@ -1,62 +1,50 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "./music.css";
+import "../../../../src/responsive.css";
 
-import sliderImage1 from "../../../assets/banner/ban-1.jpg";
-import sliderImage2 from "../../../assets/banner/ban-2.jpg";
-import sliderImage3 from "../../../assets/banner/ban-3.jpg";
-import sliderImage4 from "../../../assets/banner/ban-4.jpg";
-import sliderImage5 from "../../../assets/banner/ban-5.jpg";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-
-import { EffectCoverflow, Pagination } from "swiper";
+import gallary from "../../../assets/gallary.jpg";
+import { Link } from "react-router-dom";
 
 const MusicalHome = () => {
   return (
     <section className="section_body">
       <div className="container mx-auto">
-        <div className="text-center my-8 text-red-700">
-          <h1 className="font-bold text-6xl">Photo Gallary</h1>
+        <div className="my-8 ">
+          <h1 className="font-bold text-6xl text-white">Subscription</h1>
         </div>
-        <div className="flex">
-          <div className="w-1/2 mx-auto">
+        <div className="flex justify-center items-center subscription">
+          <div className="w-1/2 mx-auto photo_home">
             <div className="">
-              <Swiper
-                effect={"coverflow"}
-                grabCursor={true}
-                centeredSlides={true}
-                slidesPerView={"auto"}
-                coverflowEffect={{
-                  rotate: 50,
-                  stretch: 0,
-                  depth: 100,
-                  modifier: 1,
-                  slideShadows: true,
-                }}
-                pagination={true}
-                modules={[EffectCoverflow, Pagination]}
-                className="mySwiper"
-              >
-                <SwiperSlide>
-                  <img className="slider_image" src={sliderImage1} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img className="slider_image" src={sliderImage2} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img className="slider_image" src={sliderImage3} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img className="slider_image" src={sliderImage4} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img className="slider_image" src={sliderImage5} />
-                </SwiperSlide>
-              </Swiper>
+              <img
+                className="pic_home"
+                style={{ height: "700px", margin: "auto" }}
+                src={gallary}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="w-1/2 mx-auto text_home ">
+            <div className="">
+              <h1 className="font-bold">Pick a subscription</h1>
+              <p className="my-5">
+                A subscription is most beneficial if you publish videos
+                regularly. All subscriptions give you full access to 40,000
+                tracks and 90,000 sound effects. Unlimited downloads and use.
+              </p>
+            </div>
+            <div className="mt-5">
+              <h1 className="font-bold">Add to your dashboard</h1>
+              <p>
+                After subscription you can add your classes to your dashboard my
+                classes.
+              </p>
+              <div className="mt-5">
+                <Link to="/classes">
+                  <button className="btn btn-wide bg-red-700 border-0 text-white">
+                    see classes
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

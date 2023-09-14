@@ -6,12 +6,12 @@ import MusicalHome from "./Musical Instruments/MusicalHome";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Banner></Banner>
       <Classes></Classes>
       <Instructor></Instructor>
       <MusicalHome></MusicalHome>
-    </div>
+    </>
   );
 };
 

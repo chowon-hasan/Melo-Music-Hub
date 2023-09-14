@@ -4,6 +4,7 @@ import { AuthContext } from "../../AuthProvider/Auth";
 import toast, { Toaster } from "react-hot-toast";
 import { updateStatus } from "../../api/addClassesUpdate";
 import Loader from "../Shared/Loader";
+import "../../../src/responsive.css";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
@@ -89,9 +90,9 @@ const Classes = () => {
   };
 
   return (
-    <div className="my-36">
-      <div className="xl:container mx-auto">
-        <div className="text-center my-8 text-red-700">
+    <div style={{ backgroundColor: "#A31038" }} className="pt-32 pb-12">
+      <div className="xl:container mx-auto class_page_cont">
+        <div className="text-center my-8 text-white">
           <h1 className="font-bold text-6xl">All Classes</h1>
         </div>
         {loading && <Loader />}

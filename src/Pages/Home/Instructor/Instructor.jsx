@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "../../../../src/responsive.css";
+import "./instructor.css";
 import { Link } from "react-router-dom";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
 
 const Instructor = () => {
   const [instructor, setInstructor] = useState([]);
@@ -8,13 +11,17 @@ const Instructor = () => {
       .then((res) => res.json())
       .then((data) => setInstructor(data));
   });
+
+  const handleInsDetails = () => {
+    toast("This feature will active soon");
+  };
   return (
-    <div className="bg-slate-900 py-12">
+    <section className="home-instructor py-12">
       <div className="xl:container mx-auto">
-        <div className="text-center my-8 text-red-700">
+        <div className="my-8 text-white">
           <h1 className="font-bold text-6xl">Top Instructors</h1>
         </div>
-        <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-4 card_parent">
           {instructor.map((c) => (
             <div
               key={c._id}
@@ -29,19 +36,23 @@ const Instructor = () => {
                 </h2>
                 <span>Students: {c.num_students}</span>
                 <span>instructor: {c.classes_taken}</span>
-                {/* <div className="card-actions justify-center my-3">
+                <div className="card-actions justify-center my-3">
                   <Link>
-                    <button className="btn btn-wide bg-red-700 border-0 text-white">
+                    <button
+                      onClick={handleInsDetails}
+                      className="btn btn-wide bg-red-700 border-0 text-white"
+                    >
                       See Details
                     </button>
                   </Link>
-                </div> */}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+      <Toaster />
+    </section>
   );
 };
 

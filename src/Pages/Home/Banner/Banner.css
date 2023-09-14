@@ -1,12 +1,12 @@
-.carousel .slide {
-  height: 90vh;
-}
 .banner_text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 11;
-  background-color: rgba(0, 0, 0, 0.573);
+  background-color: rgba(0, 0, 0, 0.603);
   padding: 100px;
+  text-align: center;
+  border-radius: 10px;
+}
+.banner_body {
 }

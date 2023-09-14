@@ -1,0 +1,49 @@
+@media screen and (min-width: 320px) and (max-width: 575px) {
+  video {
+    display: none !important;
+  }
+  .banner_bg {
+    background-image: url(../src/assets/homeClass.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .banner_text {
+    background-color: rgba(0, 0, 0, 0.548);
+  }
+  .banner_text h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  .heading_last_pro {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  .images_profile {
+    margin-right: 10px;
+  }
+  .home-class-section,
+  .home-instructor,
+  .section_body {
+    padding: 30px 15px;
+  }
+  .subscription {
+    display: block;
+  }
+  .photo_home,
+  .text_home {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .card {
+    width: 100%;
+  }
+  .pic_home {
+    height: auto !important;
+  }
+  .instructor,
+  .class_page_cont {
+    padding: 0 15px;
+  }
+}

@@ -1,0 +1,7 @@
+.home-instructor {
+  background-image: linear-gradient(#00000000, #ffffff00),
+    url(../../../assets/home-gallary.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

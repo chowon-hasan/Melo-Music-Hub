@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/Logo1.png";
 import { AuthContext } from "../../../AuthProvider/Auth";
 import "./header.css";
+import "../../../../src/responsive.css";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="">
       <div className="fixed top-0 z-20 w-full backdrop-blur-sm bg-white/30">
         <div className="xl:container mx-auto">
           <div className="navbar">
@@ -59,11 +60,23 @@ const Header = () => {
                   <NavLink
                     to="/classes"
                     className={({ isActive }) =>
-                      isActive ? "text-red-500" : "text-white"
+                      isActive ? "text-red-500 mb-5" : "text-white mb-5"
                     }
                   >
                     Classes
                   </NavLink>
+                  {user ? (
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive ? "text-red-500" : "text-white"
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </div>
               <Link to="/">
@@ -77,7 +90,7 @@ const Header = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    isActive ? "text-red-700 " : "text-black"
+                    isActive ? "text-white " : "text-black"
                   }
                 >
                   Home
@@ -85,7 +98,7 @@ const Header = () => {
                 <NavLink
                   to="/instructor"
                   className={({ isActive }) =>
-                    isActive ? "text-red-900 mx-12" : "text-black mx-12"
+                    isActive ? "text-white mx-12" : "text-black mx-12"
                   }
                 >
                   Instructor
@@ -93,7 +106,7 @@ const Header = () => {
                 <NavLink
                   to="/classes"
                   className={({ isActive }) =>
-                    isActive ? "text-red-500" : "text-black"
+                    isActive ? "text-white" : "text-black"
                   }
                 >
                   Classes
@@ -102,7 +115,7 @@ const Header = () => {
                   <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                      isActive ? "text-red-500" : "text-black ms-12"
+                      isActive ? "text-white" : "text-black ms-12"
                     }
                   >
                     Dashboard
@@ -114,7 +127,7 @@ const Header = () => {
             </div>
             <div className="navbar-end">
               {user ? (
-                <div className="w-1/3 grid grid-cols-2 justify-center items-center">
+                <div className="w-1/3 grid grid-cols-2 justify-center items-center heading_last_pro">
                   <img
                     title={user.displayName}
                     className="images_profile"
