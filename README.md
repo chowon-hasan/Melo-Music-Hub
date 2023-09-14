@@ -32,4 +32,4 @@ This web application has some intersting features. Here We Go
 
 ## LIVE LINK
 
-https://melo-music-hub-326ac.web.app/
+https://melo-musichub.netlify.app/
